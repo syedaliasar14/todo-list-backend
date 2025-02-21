@@ -6,6 +6,7 @@ export const getTasks = async (req: Request, res: Response) => {
     const tasks = await taskService.getAllTasks();
     res.json(tasks);
   } catch (error) {
+    console.error(error);
     res.status(500).json({ error: "Failed to fetch tasks" });
   }
 };
@@ -15,6 +16,7 @@ export const createTask = async (req: Request, res: Response) => {
     const task = await taskService.createTask(req.body);
     res.status(201).json(task);
   } catch (error) {
+    console.error(error);
     res.status(500).json({ error: "Failed to create task" });
   }
 };
@@ -25,6 +27,7 @@ export const updateTask = async (req: Request, res: Response) => {
     const task = await taskService.updateTask(id, req.body);
     res.json(task);
   } catch (error) {
+    console.error(error);
     res.status(500).json({ error: "Failed to update task" });
   }
 };
@@ -35,6 +38,7 @@ export const deleteTask = async (req: Request, res: Response) => {
     await taskService.deleteTask(id);
     res.json({ message: "Task deleted successfully" });
   } catch (error) {
+    console.error(error);
     res.status(500).json({ error: "Failed to delete task" });
   }
 };
